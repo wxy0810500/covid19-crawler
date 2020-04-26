@@ -14,6 +14,7 @@ meta.org
 import os
 import argparse
 import time
+import platform
 from datetime import date
 from enum import Enum
 from multiprocessing import Pool
@@ -27,9 +28,6 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-# 引入chromedriver.exe
-chromedriver = 'C:/Program Files (x86)/Google/Chrome/Application/chromedriver.exe'
-os.environ['webdriver.chrome.driver'] = chromedriver
 todayStr = date.today().strftime("%Y-%m-%d")
 csvHeaders = ["data_add", "title", "abstract", "Publication date", "doi", "source_link"]
 
@@ -44,7 +42,24 @@ def formatDate(pubDateStamp):
 
 def login():
     url = "https://www.meta.org/account/login"
-    browser = webdriver.Chrome(chromedriver)
+    # 引入chromedriver.exe
+    sysStr = platform.system().lower()
+    if sysStr == "linux":
+        chromeDriver = "/home/ghddiai/soft/chromedriver"
+    elif sysStr == 'windows':
+        chromeDriver = 'C:/Program Files (x86)/Google/Chrome/Application/chromedriver.exe'
+    else:
+        # 其他系统的直接报错，要求手动指定
+        print("please set path of chromeDriver in crawler/chemrxiv.py!")
+        chromeDriver = ''
+    os.environ['webdriver.chrome.driver'] = chromeDriver
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+
+    browser = webdriver.Chrome(chrome_options=chrome_options, executable_path=chromeDriver)
     browser.get(url)
     try:
         email = WebDriverWait(browser, 20).until(

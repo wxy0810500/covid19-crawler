@@ -75,9 +75,9 @@ def query(sinceToday: bool, outputFilePath: str,  fieldSeparator: str = '\t', li
     queryParams["limit"] = limit
     if sinceToday:
         queryParams["published_since"] = todayStr
-        outputFileName = outputFilePath + f'chemrxiv-{todayStr}-today.csv'
+        outputFileName = outputFilePath + f'/chemrxiv-{todayStr}-today.csv'
     else:
-        outputFileName = outputFilePath + f'chemrxiv-{todayStr}-upToNow.csv'
+        outputFileName = outputFilePath + f'/chemrxiv-{todayStr}-upToNow.csv'
     outputFile = open(outputFileName, "wb")
     outputFile.write((fieldSeparator.join(csvHeaders) + lineSeparator).encode())
     stop = False

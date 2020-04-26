@@ -10,8 +10,8 @@ from crawler.pubmed import fetchLastSeveralYears, fetchLastSeveralDays
 if __name__ == '__main__':
     argparser = argparse.ArgumentParser(description="download data from specific websites")
     argparser.add_argument('-t', dest='type', default='today', choices=['today', 'upToNow'], type=str)
-    argparser.add_argument('-o', dest='outputFilePath', default='../outputcsv/', type=str, help="output file path")
-    argparser.add_argument('-ro', dest='sourceFilePath', default='../sourceFiles/', type=str, help="raw file path")
+    argparser.add_argument('-o', dest='outputFilePath', default='../outputcsv', type=str, help="output file path")
+    argparser.add_argument('-ro', dest='sourceFilePath', default='../sourceFiles', type=str, help="raw file path")
     argparser.add_argument('-fs', dest='fieldSeparator', default='\t', type=str, help="field separator")
     argparser.add_argument('-ls', dest='lineSeparator', default='\n', type=str, help="line separator")
     inputArgs = argparser.parse_args()
