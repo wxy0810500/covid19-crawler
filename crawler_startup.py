@@ -10,14 +10,14 @@ from crawler.pubmed import fetchLastSeveralYears, fetchLastSeveralDays
 if __name__ == '__main__':
     argparser = argparse.ArgumentParser(description="download data from specific websites")
     argparser.add_argument('-t', dest='type', default='today', choices=['today', 'upToNow'], type=str)
-    argparser.add_argument('-o', dest='outputFilePath', default='./', type=str, help="output file path")
-    argparser.add_argument('-ro', dest='sourceFilePath', default='./', type=str, help="raw file path")
+    argparser.add_argument('-o', dest='outputFilePath', default='../outputcsv/', type=str, help="output file path")
+    argparser.add_argument('-ro', dest='sourceFilePath', default='../sourceFiles/', type=str, help="raw file path")
     argparser.add_argument('-fs', dest='fieldSeparator', default='\t', type=str, help="field separator")
     argparser.add_argument('-ls', dest='lineSeparator', default='\n', type=str, help="line separator")
     inputArgs = argparser.parse_args()
     optType = inputArgs.type
     sourceFilePath = inputArgs.sourceFilePath
-    outputFilePath = inputArgs.outputFilePaht
+    outputFilePath = inputArgs.outputFilePath
     fieldSeparator = inputArgs.fieldSeparator
     lineSeparator = inputArgs.lineSeparator
     if "upToNow" == optType:
@@ -28,9 +28,19 @@ if __name__ == '__main__':
         # chemrxiv
         chemrxiv_all(outputFilePath, fieldSeparator, lineSeparator)
         # meta
-        SearchByKeyWords.fetchAllByKeys(outputFilePath, 100, fieldSeparator, lineSeparator)
+        try:
+            print("meta start ---------:")
+            SearchByKeyWords.fetchAllByKeys(outputFilePath, 100, fieldSeparator, lineSeparator)
+            print("meta end ---------:")
+        except Exception as e:
+            print(f"meta failed : {e}")
         # pubmed
-        fetchLastSeveralYears(outputFilePath, 1, fieldSeparator, lineSeparator)
+        try:
+            print("pubmed start ---------:")
+            fetchLastSeveralYears(outputFilePath, 1, fieldSeparator, lineSeparator)
+            print("pubmed end ---------:")
+        except Exception as e:
+            print(f"pubmed failed : {e}")
     elif 'today' == optType:
         # arxiv
         arxiv_pro(outputFilePath, fieldSeparator, lineSeparator)
@@ -39,8 +49,18 @@ if __name__ == '__main__':
         # chemrxiv
         chemrxiv_today(outputFilePath, fieldSeparator, lineSeparator)
         # meta
-        FetchByFeed.fetchYesterday(outputFilePath, fieldSeparator, lineSeparator)
+        try:
+            print("meta start ---------:")
+            # FetchByFeed.fetchYesterday(outputFilePath, fieldSeparator, lineSeparator)
+            print("meta end ---------:")
+        except Exception as e:
+            print(f"meta failed : {e}")
         # pubmed
-        fetchLastSeveralDays(outputFilePath, 1, fieldSeparator, lineSeparator)
+        try:
+            print("pubmed start ---------:")
+            # fetchLastSeveralDays(outputFilePath, 2, fieldSeparator, lineSeparator)
+            print("pubmed end ---------:")
+        except Exception as e:
+            print(f"pubmed failed : {e}")
     else:
         print("invalid type argument!")

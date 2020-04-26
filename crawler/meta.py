@@ -23,6 +23,7 @@ import ijson
 import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -46,8 +47,8 @@ def login():
     browser = webdriver.Chrome(chromedriver)
     browser.get(url)
     try:
-        login_btn = WebDriverWait(browser, 20).until(
-            EC.presence_of_element_located((By.ID, r"btn-login"))
+        email = WebDriverWait(browser, 20).until(
+            EC.presence_of_element_located((By.ID, r"email"))
         )
         email = browser.find_element_by_id("email")
         email.clear()
@@ -55,8 +56,14 @@ def login():
         passwd = browser.find_element_by_id('password')
         passwd.clear()
         passwd.send_keys('Ghddi@2020')
-        time.sleep(3)
-        login_btn.click()
+        while True:
+            time.sleep(2)
+            try:
+                login_btn = browser.find_element_by_id(r'btn-login')
+                login_btn.click()
+            except NoSuchElementException:
+                break
+
         WebDriverWait(browser, 60).until(
             EC.presence_of_element_located((By.XPATH, r"//h1[@data-rosetta-id]"))
         )
@@ -65,6 +72,7 @@ def login():
         for cookie in cookies:
             if cookie["name"] == "Authorization" and cookie["domain"] == "www.meta.org":
                 authorization = cookie["value"]
+
     finally:
         browser.quit()
     return authorization
@@ -241,11 +249,11 @@ class FetchByFeed:
     @classmethod
     def fetchYesterday(cls, outputFilePath: str = '../outputcsv', fieldSeparator: str = '\t', lineSeparator: str = '\n'):
         outputFile = outputFilePath + f"/meta-{todayStr}-onlyYesterday.csv"
-        # auth =
-        # "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlEwVkVRa1JHUXpneVJUZEVSa0UzTjBVNVJrTTFNREF3TTBaRE5FSkVSREpHT1RWQ05UbEZOZyJ9.eyJodHRwczovL21ldGEub3JnL2dyb3VwcyI6W10sImlzcyI6Imh0dHBzOi8vbG9naW4ubWV0YS5vcmcvIiwic3ViIjoiYXV0aDB8NWU5OTYzNDMxYjMwZWMwYzg1YmExMmYyIiwiYXVkIjpbImh0dHBzOi8vYXBpLm1ldGEub3JnIiwiaHR0cHM6Ly9jemktbWV0YS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTg3NTM5NzE1LCJleHAiOjE1ODc2MjYxMTUsImF6cCI6IlhNZEJrN3k4b2EzV1dKVjRIQWV5ZFZrcGNnSGlLb29jIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbInBsYWNlaG9sZGVyOm1lbWJlciIsInJlYWQ6dGhlbWF0aWNfZmVlZHMiXX0.Weo9KqlcZT6wSqbFUtKivtOvS8JL3PnGBrmOr_YfvsgjkTxkn5JNBOB28GaD2lFrdV0InemIow0GDdw5sKvMrlfAjugyT_xvGJ_N3O4HkNbudXc3ZbtmaQePCfe01JYIrAiWdcyBAVuSGSgJDYDDapEt-ZWwMhLATaNVqXu5MycVg9TQjAOSnezCowTgDtmMIxszMIcmLr6YDtGnHTtUiddfXlYzAEYz5fxzi8alzUdnk54YBSEB2g-iX-T_44bpIR_oyO4OLu6JOB-mGmixxBWzpDdny6d0eTAiB88RXyS31ibv2wvhKfs2dxVrrI8J8RpkVxnInD721pRNVeMHWw"
+        auth = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlEwVkVRa1JHUXpneVJUZEVSa0UzTjBVNVJrTTFNREF3TTBaRE5FSkVSREpHT1RWQ05UbEZOZyJ9.eyJodHRwczovL21ldGEub3JnL2dyb3VwcyI6W10sImlzcyI6Imh0dHBzOi8vbG9naW4ubWV0YS5vcmcvIiwic3ViIjoiYXV0aDB8NWU5OTYzNDMxYjMwZWMwYzg1YmExMmYyIiwiYXVkIjpbImh0dHBzOi8vYXBpLm1ldGEub3JnIiwiaHR0cHM6Ly9jemktbWV0YS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTg3ODk3NTUwLCJleHAiOjE1ODc5ODM5NTAsImF6cCI6IlhNZEJrN3k4b2EzV1dKVjRIQWV5ZFZrcGNnSGlLb29jIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbInBsYWNlaG9sZGVyOm1lbWJlciIsInJlYWQ6dGhlbWF0aWNfZmVlZHMiXX0.hsU1w0RhD0h1QB7n8FJlKS-_tpHTjsl4w4ppEFq4tPPJPuvlD8WlfGk4TKZRwlT--V7Llc8YlbOoKOAdxRwAQYB8wWvlsSPehbQN5xYNVtW97WeMtg6leGahhkXxTgb1p15qA3AOPAWBEN8Yw38UaSyheVYZ4IDc6v7hLy4qTL0DrROntxeXwEtTTPo5_DuyAn7myA2m27B_rSfDIrF9_sCWTQMdgdjfL4qcP7FZxcwOXcywrvSr6qSRacB8ONnSgFtDEOsnuXpZY3tKEaXY4_sYwtEWo2EK0pTnumipjfCVdcPraoMnXk3_OJdAhGrK8uAaPTmrxmzALu0GZ2hnTQ"
         feedId = "e0bb0d63-ba7a-4b16-a92e-d0e406f9e437"
-        auth = login()
-        FetchByFeed._fetchPages(outputFile, auth, feedId, FetchByFeed.GroupBy.DAILY, 50, fieldSeparator, lineSeparator)
+        # auth = login()
+        FetchByFeed._fetchPages(outputFile, auth, feedId, FetchByFeed.GroupBy.DAILY, "1", 50,
+                                fieldSeparator, lineSeparator)
 
 
 # if __name__ == '__main__':

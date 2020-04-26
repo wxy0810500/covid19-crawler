@@ -94,7 +94,7 @@ def query(sinceToday: bool, outputFilePath: str,  fieldSeparator: str = '\t', li
                         csvRecord = [todayStr, repr(article["title"]), repr(artInfo["description"]),
                                      article["published_date"], article["doi"], article["url_public_html"]]
                         outputFile.write((fieldSeparator.join(csvRecord) + lineSeparator).encode())
-                print(offset)
+                print(f"offset : {offset}")
                 if len(articleList) < limit:
                     stop = True
             offset += limit
@@ -109,11 +109,21 @@ def query(sinceToday: bool, outputFilePath: str,  fieldSeparator: str = '\t', li
 
 
 def querySinceToday(outputFilePath: str = '../outputcsv', fieldSeparator: str = '\t', lineSeparator: str = '\n'):
-    query(True, outputFilePath, fieldSeparator, lineSeparator)
+    try:
+        print("chemrxiv start ---------:")
+        query(True, outputFilePath, fieldSeparator, lineSeparator)
+        print("chemrxiv end ---------:")
+    except Exception as e:
+        print(f"chemrxiv failed {e}")
 
 
 def queryAllUpToNow(outputFilePath: str = '../outputcsv', fieldSeparator: str = '\t', lineSeparator: str = '\n'):
-    query(False, outputFilePath, fieldSeparator, lineSeparator)
+    try:
+        print("chemrxiv start ---------:")
+        query(False, outputFilePath, fieldSeparator, lineSeparator)
+        print("chemrxiv end ---------:")
+    except Exception as e:
+        print(f"chemrxiv failed {e}")
 
 #
 # if __name__ == '__main__':

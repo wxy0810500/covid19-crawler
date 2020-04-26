@@ -35,18 +35,22 @@ csvHeaders = ["data_add", "title", "abstract", "Publication date", "doi", "sourc
 
 def process(outputFilePath: str = "../outputcsv", fieldSeparator: str = '\t', lineSeparator: str = '\n'):
     outputFilePath = outputFilePath + "/arxiv-{}-upToNow.csv"
-    with open(outputFilePath.format(todayStr), 'wb') as outFile:
-        # header
-        outFile.write((fieldSeparator.join(csvHeaders) + lineSeparator).encode('utf-8'))
-        num = 100
-        # 第一次
-        totalCount, dataList = getOne(0, num)
-        outFile.writelines(dataList)
-        if totalCount > num:
-            for start in range(num, totalCount, num):
-                totalCount, dataList = getOne(start, num)
-                outFile.writelines(dataList)
-
+    try:
+        print("arxiv start ---------:")
+        with open(outputFilePath.format(todayStr), 'wb') as outFile:
+            # header
+            outFile.write((fieldSeparator.join(csvHeaders) + lineSeparator).encode('utf-8'))
+            num = 100
+            # 第一次
+            totalCount, dataList = getOne(0, num)
+            outFile.writelines(dataList)
+            if totalCount > num:
+                for start in range(num, totalCount, num):
+                    totalCount, dataList = getOne(start, num)
+                    outFile.writelines(dataList)
+        print("arxiv end ---------:")
+    except Exception as e:
+        print(f"arxvi failed : {e}")
 
 # if __name__ == '__main__':
 #     process()

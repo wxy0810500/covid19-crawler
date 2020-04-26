@@ -11,7 +11,7 @@ todayStr = date.today().strftime("%Y-%m-%d")
 
 def downloadJsonToFile(downloadFilePath) -> str:
     r = requests.get(url=jsonUrl)
-    downloadFile = downloadFilePath + f"/biorxiv-{todayStr}.json"
+    downloadFile = downloadFilePath + f"biorxiv-{todayStr}.json"
     with open(downloadFile, "wb") as f:
         for chunk in r.iter_content(chunk_size=1024):
             if chunk:
@@ -44,10 +44,14 @@ def switchToCsv(downloadFile, outputFilePath,
                 outFile.write((fieldSeparator.join(record) + lineSeparator).encode('utf-8'))
 
 
-def process(outputFilePath: str = "../outputcsv", downloadFilePath: str = "../souceFiles"
-            , fieldSeparator: str = '\t', lineSeparator: str = '\n'):
-    switchToCsv(downloadJsonToFile(downloadFilePath), outputFilePath, fieldSeparator, lineSeparator)
-
+def process(outputFilePath: str = "../outputcsv", downloadFilePath: str = "../souceFiles",
+            fieldSeparator: str = '\t', lineSeparator: str = '\n'):
+    try:
+        print("biorxiv start ---------:")
+        switchToCsv(downloadJsonToFile(downloadFilePath), outputFilePath, fieldSeparator, lineSeparator)
+        print("biorxiv end ---------:")
+    except Exception as e:
+        print(f"biorxiv failed {e}")
 
 # if __name__ == '__main__':
 #     process()
