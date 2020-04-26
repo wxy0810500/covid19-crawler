@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a7b937fc-c592-4117-81e5-89f80947dde7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/covid19.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/WangXinyu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auto-update/drugs_biologics_vaccines.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crawler/arxiv.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crawler/biorxiv.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crawler/chemrxiv.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crawler/dimensions_ai_shell.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crawler/meta.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crawler/pubmed.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crawler/startup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputcsv/arxiv-2020-04-15.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputcsv/biorxiv-2020-04-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputcsv/biorxiv-2020-04-13.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputcsv/chemrxiv-2020-04-17-upToNow.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputcsv/chemrxiv-2020-04-17.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputcsv/meta-2020-04-23-t---2019-nCoV--upToYesterday.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputcsv/meta-2020-04-23-t---COVID-19--upToYesterday.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputcsv/meta-2020-04-23-t---COVID19--upToYesterday.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputcsv/meta-2020-04-23-t---SARS-CoV-2--upToYesterday.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputcsv/pubmed-2020-04-24-last_1_days.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputcsv/pubmed-2020-04-24-last_1_years.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pymed/api.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pymed/article.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pymed/book.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pymed/helpers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sourceFiles/biorxiv-2020-04-11.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sourceFiles/biorxiv-2020-04-13.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1aLDIFoCAxYDzTvW2f6ulXMvixp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../python" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\code\covid19\crawler" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\code\covid19" />
+      <recent name="D:\code\covid19\outputcsv" />
+      <recent name="D:\code\covid19\sourceFiles" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.pubmed">
+    <configuration name="arxiv" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="covid19" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/crawler" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawler/arxiv.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="biorxiv" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="covid19" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/crawler" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawler/biorxiv.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="chemrxiv" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="covid19" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/crawler" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawler/chemrxiv.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="meta" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="covid19" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/crawler" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawler/meta.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pubmed" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="covid19" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/crawler" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawler/pubmed.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.pubmed" />
+        <item itemvalue="Python.meta" />
+        <item itemvalue="Python.chemrxiv" />
+        <item itemvalue="Python.arxiv" />
+        <item itemvalue="Python.biorxiv" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a7b937fc-c592-4117-81e5-89f80947dde7" name="Default Changelist" comment="" />
+      <created>1586505898767</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586505898767</updated>
+      <workItem from="1586505900095" duration="6999000" />
+      <workItem from="1586605285500" duration="3549000" />
+      <workItem from="1586746313282" duration="563000" />
+      <workItem from="1586751116908" duration="3826000" />
+      <workItem from="1586852251133" duration="2175000" />
+      <workItem from="1586858992255" duration="2369000" />
+      <workItem from="1586918612584" duration="3784000" />
+      <workItem from="1586922850132" duration="2209000" />
+      <workItem from="1587005171465" duration="4759000" />
+      <workItem from="1587018748547" duration="18000" />
+      <workItem from="1587022944698" duration="6006000" />
+      <workItem from="1587031035680" duration="15454000" />
+      <workItem from="1587363885403" duration="34000" />
+      <workItem from="1587365201724" duration="18879000" />
+      <workItem from="1587452382972" duration="47803000" />
+      <workItem from="1587714793618" duration="6678000" />
+      <workItem from="1587869059925" duration="5360000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="553" y="179" key="#Inspections" timestamp="1587721460832">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="553" y="179" key="#Inspections/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587721460832" />
+    <state x="553" y="179" key="#Python" timestamp="1586762901321">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="553" y="179" key="#Python/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1586762901321" />
+    <state x="416" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587622766589">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="416" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587622766589" />
+    <state x="741" y="276" key="FileChooserDialogImpl" timestamp="1587873664651">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="741" y="276" key="FileChooserDialogImpl/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587873664651" />
+    <state width="1878" height="274" key="GridCell.Tab.0.bottom" timestamp="1587722429956">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="216" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1587093069769" />
+    <state width="1878" height="274" key="GridCell.Tab.0.bottom/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587722429956" />
+    <state width="1878" height="274" key="GridCell.Tab.0.center" timestamp="1587722429956">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="216" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1587093069769" />
+    <state width="1878" height="274" key="GridCell.Tab.0.center/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587722429956" />
+    <state width="1878" height="274" key="GridCell.Tab.0.left" timestamp="1587722429956">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="216" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1587093069769" />
+    <state width="1878" height="274" key="GridCell.Tab.0.left/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587722429956" />
+    <state width="1878" height="274" key="GridCell.Tab.0.right" timestamp="1587722429956">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="216" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1587093069769" />
+    <state width="1878" height="274" key="GridCell.Tab.0.right/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587722429956" />
+    <state width="1878" height="274" key="GridCell.Tab.1.bottom" timestamp="1587722429956">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="216" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1587093069696" />
+    <state width="1878" height="274" key="GridCell.Tab.1.bottom/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587722429956" />
+    <state width="1878" height="274" key="GridCell.Tab.1.center" timestamp="1587722429956">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="216" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1587093069696" />
+    <state width="1878" height="274" key="GridCell.Tab.1.center/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587722429956" />
+    <state width="1878" height="274" key="GridCell.Tab.1.left" timestamp="1587722429956">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="216" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1587093069696" />
+    <state width="1878" height="274" key="GridCell.Tab.1.left/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587722429956" />
+    <state width="1878" height="274" key="GridCell.Tab.1.right" timestamp="1587722429956">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="216" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1587093069696" />
+    <state width="1878" height="274" key="GridCell.Tab.1.right/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587722429956" />
+    <state x="462" y="163" key="SettingsEditor" timestamp="1587712031411">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="462" y="163" key="SettingsEditor/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587712031411" />
+    <state width="966" height="526" key="XDebugger.FullValuePopup" timestamp="1586920939289">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="966" height="526" key="XDebugger.FullValuePopup/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1586920939289" />
+    <state x="644" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1587869092562">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="429" y="226" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1586751119911" />
+    <state x="644" y="345" key="com.intellij.ide.util.TipDialog/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587869092562" />
+    <state x="293" y="118" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1587112707884">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="195" y="77" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1280.680@0.0.1280.680" timestamp="1587093024820" />
+    <state x="293" y="118" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587112707884" />
+    <state x="93" y="93" width="1733" height="853" key="dock-window-1" timestamp="1587023915459">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="93" y="93" width="1733" height="853" key="dock-window-1/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587023915459" />
+    <state x="626" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1587545528750">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="415" y="148" width="672" height="444" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1587093257694" />
+    <state x="626" y="229" width="672" height="678" key="search.everywhere.popup/3840.229.1280.667/0.0.1920.1040@0.0.1920.1040" timestamp="1587545528750" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://C:/coding-soft/anaconda3/envs/ghddi/Lib/site-packages/pymed/api.py</url>
+          <line>213</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$APPLICATION_HOME_DIR$/plugins/python/helpers/pydev/_pydev_imps/_pydev_execfile.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$APPLICATION_HOME_DIR$/plugins/python/helpers/pydev/_pydev_imps/_pydev_execfile.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/covid19$arxiv.coverage" NAME="arxiv Coverage Results" MODIFIED="1586923118498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/crawler" />
+    <SUITE FILE_PATH="coverage/covid19$chemrxiv.coverage" NAME="chemrxiv Coverage Results" MODIFIED="1587111297122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/crawler" />
+    <SUITE FILE_PATH="coverage/covid19$pubmed.coverage" NAME="pubmed Coverage Results" MODIFIED="1587717139176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/crawler" />
+    <SUITE FILE_PATH="coverage/covid19$biorxiv.coverage" NAME="biorxiv Coverage Results" MODIFIED="1586858758774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/crawler" />
+    <SUITE FILE_PATH="coverage/covid19$meta.coverage" NAME="meta Coverage Results" MODIFIED="1587637984098" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/crawler" />
+  </component>
+</project>
