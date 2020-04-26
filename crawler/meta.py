@@ -248,21 +248,21 @@ class FetchByFeed:
         FetchByFeed._fetchPages(outputFile, auth, feedId, FetchByFeed.GroupBy.DAILY, 50, fieldSeparator, lineSeparator)
 
 
-if __name__ == '__main__':
-    argParser = argparse.ArgumentParser(description="get article base info from meta.")
-    argParser.add_argument('-type', required=True, type=str,
-                           choices=['yesterday', 'someday', 'allTime'],
-                           help='options: yesterday(yesterday only), someday(specified by arg:-date), '
-                                'allTime(up to yesterday)')
-    argParser.add_argument('-date', default=None, type=str, help='optional arg, date format : YYYY-mm-DD')
-    args = argParser.parse_args()
-    optType = args.type
-    sDate = args.type
-    if 'yesterday' == optType:
-        FetchByFeed.fetchYesterday()
-    elif 'allTime' == optType:
-        SearchByKeyWords.fetchAllByKeys()
-    elif 'someday' == optType:
-        pass
-    else:
-        print("invalid 'type' value! options:yesterday, someday, allTime")
+# if __name__ == '__main__':
+#     argParser = argparse.ArgumentParser(description="get article base info from meta.")
+#     argParser.add_argument('-type', required=True, type=str,
+#                            choices=['yesterday', 'someday', 'allTime'],
+#                            help='options: yesterday(yesterday only), someday(specified by arg:-date), '
+#                                 'allTime(up to yesterday)')
+#     argParser.add_argument('-date', default=None, type=str, help='optional arg, date format : YYYY-mm-DD')
+#     args = argParser.parse_args()
+#     optType = args.type
+#     sDate = args.type
+#     if 'yesterday' == optType:
+#         FetchByFeed.fetchYesterday()
+#     elif 'allTime' == optType:
+#         SearchByKeyWords.fetchAllByKeys()
+#     elif 'someday' == optType:
+#         pass
+#     else:
+#         print("invalid 'type' value! options:yesterday, someday, allTime")

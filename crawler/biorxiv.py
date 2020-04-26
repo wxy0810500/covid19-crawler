@@ -49,5 +49,5 @@ def process(outputFilePath: str = "../outputcsv", downloadFilePath: str = "../so
     switchToCsv(downloadJsonToFile(downloadFilePath), outputFilePath, fieldSeparator, lineSeparator)
 
 
-if __name__ == '__main__':
-    process()
+# if __name__ == '__main__':
+#     process()

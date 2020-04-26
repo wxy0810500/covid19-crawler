@@ -115,6 +115,6 @@ def querySinceToday(outputFilePath: str = '../outputcsv', fieldSeparator: str = 
 def queryAllUpToNow(outputFilePath: str = '../outputcsv', fieldSeparator: str = '\t', lineSeparator: str = '\n'):
     query(False, outputFilePath, fieldSeparator, lineSeparator)
 
-
-if __name__ == '__main__':
-    queryAllUpToNow()
+#
+# if __name__ == '__main__':
+#     queryAllUpToNow()

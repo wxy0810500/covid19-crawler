@@ -55,7 +55,7 @@ def fetchLastSeveralYears(outFilePath: str = '../outputcsv', years: int = 1,
     process(outFile, queryStr, fieldSeparator, lineSeparator)
 
 
-if __name__ == '__main__':
-    # fetchLastSeveralYears(1)
-    # fetchLastSeveralDays(1)
-    pass
+# if __name__ == '__main__':
+#     # fetchLastSeveralYears(1)
+#     # fetchLastSeveralDays(1)
+#     pass

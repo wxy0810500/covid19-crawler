@@ -48,5 +48,5 @@ def process(outputFilePath: str = "../outputcsv", fieldSeparator: str = '\t', li
                 outFile.writelines(dataList)
 
 
-if __name__ == '__main__':
-    process()
+# if __name__ == '__main__':
+#     process()
