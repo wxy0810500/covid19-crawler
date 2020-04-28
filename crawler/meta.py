@@ -112,7 +112,7 @@ class SearchByKeyWords:
         with Pool(4) as pool:
             pool.starmap(cls._searchByOneKeyWord,
                          ((authorization, cls.__keyFormat.format(key),
-                           outputFilePath + f"../outputcsv/meta-{todayStr}-{repr(key)}--upToYesterday.csv",
+                           outputFilePath + "/meta-{}-{}--upToYesterday.csv".format(todayStr, repr(key)),
                            pageSize, fieldSeparator, lineSeparator)
                           for key in cls.__keys))
         # for key in keys:
