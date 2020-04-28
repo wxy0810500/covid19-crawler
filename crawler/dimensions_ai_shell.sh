@@ -2,8 +2,8 @@
 echo "usage ./dimension_ai_shell.sh {source file dir} {output file dir} {redownload raw file}:default=false"
 
 redownload=${1:-false}
-sourceFileDir=${2:-.}
-outFileDir=${3:-.}
+sourceFileDir=${3:-.}
+outFileDir=${2:-.}
 
 today=$(date +%F)
 DOWNLOAD_FILE="${sourceFileDir}/raw_dimension_ai_${today}.csv"
