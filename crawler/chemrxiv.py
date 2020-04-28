@@ -94,7 +94,7 @@ def query(sinceToday: bool, outputFilePath: str,  fieldSeparator: str = '\t', li
                         csvRecord = [todayStr, repr(article["title"]), repr(artInfo["description"]),
                                      article["published_date"], article["doi"], article["url_public_html"]]
                         outputFile.write((fieldSeparator.join(csvRecord) + lineSeparator).encode())
-                print(f"offset : {offset}")
+                print(f"chemrxiv offset : {offset} , article num : {len(articleList)}")
                 if len(articleList) < limit:
                     stop = True
             offset += limit

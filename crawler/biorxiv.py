@@ -11,7 +11,7 @@ todayStr = date.today().strftime("%Y-%m-%d")
 
 def downloadJsonToFile(downloadFilePath) -> str:
     r = requests.get(url=jsonUrl)
-    downloadFile = downloadFilePath + f"biorxiv-{todayStr}.json"
+    downloadFile = downloadFilePath + f"/biorxiv-{todayStr}.json"
     with open(downloadFile, "wb") as f:
         for chunk in r.iter_content(chunk_size=1024):
             if chunk:
