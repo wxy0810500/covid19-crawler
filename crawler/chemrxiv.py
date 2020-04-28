@@ -10,7 +10,7 @@ post_headers = {"authorization": "token",
                 "Content-type": "application/json"}
 
 
-def doQuery(queryParams):
+def doPostQuery(queryParams):
     resp = requests.post(searchURL, json=queryParams, headers=post_headers)
     if resp.status_code == 200:
         body = resp.content.decode('utf-8')
@@ -84,7 +84,7 @@ def query(sinceToday: bool, outputFilePath: str,  fieldSeparator: str = '\t', li
     while stop is not True:
         try:
             queryParams["offset"] = offset
-            articleList = doQuery(queryParams)
+            articleList = doPostQuery(queryParams)
             if articleList is not None and len(articleList) > 0:
                 for article in articleList:
                     # abstracht:通过url_public_api接口逐个读取文章信息，从返回值中提取description。
@@ -94,7 +94,7 @@ def query(sinceToday: bool, outputFilePath: str,  fieldSeparator: str = '\t', li
                         csvRecord = [todayStr, repr(article["title"]), repr(artInfo["description"]),
                                      article["published_date"], article["doi"], article["url_public_html"]]
                         outputFile.write((fieldSeparator.join(csvRecord) + lineSeparator).encode())
-                print(f"offset : {offset}")
+                print(f"chemrxiv offset : {offset} , article num : {len(articleList)}")
                 if len(articleList) < limit:
                     stop = True
             offset += limit

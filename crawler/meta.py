@@ -137,7 +137,6 @@ class SearchByKeyWords:
     @classmethod
     def _searchByOneKeyWord(cls, authorization: str, keyWord: str, outFile: str, pageSize: int = 100,
                             fieldSeparator: str = '\t', lineSeparator: str = '\n'):
-        # authorization = login()
         # print(authorization)
         searchBody = {"matching": [{"set": [keyWord]}]}
         # first
@@ -264,9 +263,9 @@ class FetchByFeed:
     @classmethod
     def fetchYesterday(cls, outputFilePath: str = '../outputcsv', fieldSeparator: str = '\t', lineSeparator: str = '\n'):
         outputFile = outputFilePath + f"/meta-{todayStr}-onlyYesterday.csv"
-        auth = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlEwVkVRa1JHUXpneVJUZEVSa0UzTjBVNVJrTTFNREF3TTBaRE5FSkVSREpHT1RWQ05UbEZOZyJ9.eyJodHRwczovL21ldGEub3JnL2dyb3VwcyI6W10sImlzcyI6Imh0dHBzOi8vbG9naW4ubWV0YS5vcmcvIiwic3ViIjoiYXV0aDB8NWU5OTYzNDMxYjMwZWMwYzg1YmExMmYyIiwiYXVkIjpbImh0dHBzOi8vYXBpLm1ldGEub3JnIiwiaHR0cHM6Ly9jemktbWV0YS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTg3ODk3NTUwLCJleHAiOjE1ODc5ODM5NTAsImF6cCI6IlhNZEJrN3k4b2EzV1dKVjRIQWV5ZFZrcGNnSGlLb29jIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbInBsYWNlaG9sZGVyOm1lbWJlciIsInJlYWQ6dGhlbWF0aWNfZmVlZHMiXX0.hsU1w0RhD0h1QB7n8FJlKS-_tpHTjsl4w4ppEFq4tPPJPuvlD8WlfGk4TKZRwlT--V7Llc8YlbOoKOAdxRwAQYB8wWvlsSPehbQN5xYNVtW97WeMtg6leGahhkXxTgb1p15qA3AOPAWBEN8Yw38UaSyheVYZ4IDc6v7hLy4qTL0DrROntxeXwEtTTPo5_DuyAn7myA2m27B_rSfDIrF9_sCWTQMdgdjfL4qcP7FZxcwOXcywrvSr6qSRacB8ONnSgFtDEOsnuXpZY3tKEaXY4_sYwtEWo2EK0pTnumipjfCVdcPraoMnXk3_OJdAhGrK8uAaPTmrxmzALu0GZ2hnTQ"
+        # auth = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlEwVkVRa1JHUXpneVJUZEVSa0UzTjBVNVJrTTFNREF3TTBaRE5FSkVSREpHT1RWQ05UbEZOZyJ9.eyJodHRwczovL21ldGEub3JnL2dyb3VwcyI6W10sImlzcyI6Imh0dHBzOi8vbG9naW4ubWV0YS5vcmcvIiwic3ViIjoiYXV0aDB8NWU5OTYzNDMxYjMwZWMwYzg1YmExMmYyIiwiYXVkIjpbImh0dHBzOi8vYXBpLm1ldGEub3JnIiwiaHR0cHM6Ly9jemktbWV0YS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTg3ODk3NTUwLCJleHAiOjE1ODc5ODM5NTAsImF6cCI6IlhNZEJrN3k4b2EzV1dKVjRIQWV5ZFZrcGNnSGlLb29jIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbInBsYWNlaG9sZGVyOm1lbWJlciIsInJlYWQ6dGhlbWF0aWNfZmVlZHMiXX0.hsU1w0RhD0h1QB7n8FJlKS-_tpHTjsl4w4ppEFq4tPPJPuvlD8WlfGk4TKZRwlT--V7Llc8YlbOoKOAdxRwAQYB8wWvlsSPehbQN5xYNVtW97WeMtg6leGahhkXxTgb1p15qA3AOPAWBEN8Yw38UaSyheVYZ4IDc6v7hLy4qTL0DrROntxeXwEtTTPo5_DuyAn7myA2m27B_rSfDIrF9_sCWTQMdgdjfL4qcP7FZxcwOXcywrvSr6qSRacB8ONnSgFtDEOsnuXpZY3tKEaXY4_sYwtEWo2EK0pTnumipjfCVdcPraoMnXk3_OJdAhGrK8uAaPTmrxmzALu0GZ2hnTQ"
         feedId = "e0bb0d63-ba7a-4b16-a92e-d0e406f9e437"
-        # auth = login()
+        auth = login()
         FetchByFeed._fetchPages(outputFile, auth, feedId, FetchByFeed.GroupBy.DAILY, "1", 50,
                                 fieldSeparator, lineSeparator)
 
