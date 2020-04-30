@@ -236,10 +236,10 @@ class PubMed(object):
 
             # Add the retrieved IDs to the list
             article_ids += response.get("esearchresult", {}).get("idlist", [])
-            print(f"pubmed query total_result_count : {total_result_count} , retrieved_count :{retrieved_count}")
 
             # Get information from the response
             retrieved_count += int(response.get("esearchresult", {}).get("retmax"))
+            print(f"pubmed query total_result_count : {total_result_count} , retrieved_count :{retrieved_count}")
 
         print("pubmed query all article ids")
         # Return the response

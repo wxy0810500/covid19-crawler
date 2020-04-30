@@ -8,6 +8,7 @@ from crawler.chemrxiv import queryAllUpToNow as chemrxiv_all
 from crawler.chemrxiv import querySinceToday as chemrxiv_today
 from crawler.meta import SearchByKeyWords, FetchByFeed
 from crawler.pubmed import fetchLastSeveralYears, fetchLastSeveralDays
+from crawler.dimensions_googledoc import process as dimension_pro
 
 
 def crawlerWithoutType(sourceSite, outputFilePath, sourceFilePath, fieldSeparator, lineSeparator):
@@ -18,7 +19,10 @@ def crawlerWithoutType(sourceSite, outputFilePath, sourceFilePath, fieldSeparato
     if sourceSite is None or sourceSite == 'biorxiv':
         # biorxiv
         biorxiv_pro(outputFilePath, sourceFilePath, fieldSeparator, lineSeparator)
+
+    if sourceSite is None or sourceSite == 'dimension':
         # dimension_ai
+        dimension_pro(outputFilePath, sourceFilePath, fieldSeparator, lineSeparator)
 
 
 if __name__ == '__main__':
@@ -27,7 +31,7 @@ if __name__ == '__main__':
     argparser = argparse.ArgumentParser(description="download data from specific websites")
     argparser.add_argument('-t', dest='type', default='lastDay', choices=['lastDay', 'upToNow'], type=str)
     argparser.add_argument('-s', dest='source', default=None,
-                           choices=['arxiv', 'biorxiv', 'chemrxiv', 'dim_ai', 'meta', 'pubmed'])
+                           choices=['arxiv', 'biorxiv', 'chemrxiv', 'dimension', 'meta', 'pubmed'])
     argparser.add_argument('-o', dest='outputFilePath', default=currentPath + '/outputcsv',
                            type=str, help="output file path")
     argparser.add_argument('-ro', dest='sourceFilePath', default=currentPath + '/sourceFiles',
