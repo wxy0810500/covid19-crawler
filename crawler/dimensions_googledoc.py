@@ -34,7 +34,7 @@ def switchCsv(sourceFile, outputFile, fieldSeparator: str = '\t', lineSeparator:
 def process(outputFileDir='../outputcsv', sourceFileDir='../sourceFiles',
             fieldSeparator: str = '\t', lineSeparator: str = '\n'):
     # source = "../sourceFiles/raw-dimensions-2020-04-30.csv"
-    switchCsv(downLoadCsv(sourceFileDir), f'{outputFileDir}/dimension_ai-{todayStr}.csv',
+    switchCsv(downLoadCsv(sourceFileDir), f'{outputFileDir}/dimension_ai-{todayStr}-upToNow.csv',
               fieldSeparator, lineSeparator)
     # switchCsv(source, f'{outputFileDir}/dimension_ai-{todayStr}-upToNow.csv',
     #           fieldSeparator, lineSeparator)

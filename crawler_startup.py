@@ -22,7 +22,12 @@ def crawlerWithoutType(sourceSite, outputFilePath, sourceFilePath, fieldSeparato
 
     if sourceSite is None or sourceSite == 'dimension':
         # dimension_ai
-        dimension_pro(outputFilePath, sourceFilePath, fieldSeparator, lineSeparator)
+        try:
+            print("dimension start ---------:")
+            dimension_pro(outputFilePath, sourceFilePath, fieldSeparator, lineSeparator)
+            print("dimension end ---------:")
+        except Exception as e:
+            print(f"dimension failed : {e}")
 
 
 if __name__ == '__main__':

@@ -14,7 +14,6 @@ import os
 ## query directly from googlesheet 
 df = pd.read_csv('https://docs.google.com/spreadsheets/d/1-kTZJZ1GAhJ2m4GAIhw1ZdlgO46JpvX0ZQa232VWRmw/export?format=csv&id=1-kTZJZ1GAhJ2m4GAIhw1ZdlgO46JpvX0ZQa232VWRmw&gid=1410737911')
 
-
 ##########generate country plot
 
 def dropna_col(df, col=None):
@@ -237,8 +236,6 @@ ax.set_title('Number of Trials in each Therapeutic Area', fontdict={'fontsize':1
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 fig.savefig('figure_types.png', bbox_inches='tight')
 
-
-os.system('python csv2md.py -csv druglist.csv -md druglist.md') #run markdown converter
 
 ##update daily directly to the website (auto ssh)
 import paramiko 

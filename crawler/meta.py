@@ -112,9 +112,14 @@ class SearchByKeyWords:
         with Pool(4) as pool:
             pool.starmap(cls._searchByOneKeyWord,
                          ((authorization, cls.__keyFormat.format(key),
-                           outputFilePath + "/meta-{}-{}--upToYesterday.csv".format(todayStr, repr(key)),
+                           outputFilePath + "/meta-{}-{}-upToYesterday.csv".format(todayStr, index),
                            pageSize, fieldSeparator, lineSeparator)
-                          for key in cls.__keys))
+                          for index, key in enumerate(cls.__keys)))
+        outFile = f'{outputFilePath}/meta-{todayStr}-upToYesterday.csv'
+        with open(outFile, 'wb') as f:
+            f.write((fieldSeparator.join(csvHeaders) + lineSeparator).encode())
+
+        os.system(f'cat {outputFilePath}/meta-{todayStr}-*-upToYesterday.csv > {outFile}')
         # for key in keys:
         #     searchByKeyWord(authorization, cls.__keyFormat.format(key),
         #                            outputFilePath + f"../outputcsv/meta-{todayStr}-{repr(key)}--upToYesterday.csv",
@@ -143,7 +148,6 @@ class SearchByKeyWords:
         totalCount = cls._getTotalCount(searchBody, authorization)
         print("search by key word : {} , total count = {}", repr(keyWord), totalCount)
         with open(outFile, "wb") as f:
-            f.write((fieldSeparator.join(csvHeaders) + lineSeparator).encode())
             for page in range(0, totalCount // pageSize + 1):
                 time.sleep(2)
                 records = cls._searchOnePage(searchBody, authorization, page, pageSize,

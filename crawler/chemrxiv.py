@@ -11,7 +11,9 @@ post_headers = {"authorization": "token",
 
 
 def doPostQuery(queryParams):
-    resp = requests.post(searchURL, json=queryParams, headers=post_headers)
+    s = requests.session()
+    s.keep_alive = False
+    resp = s.post(searchURL, json=queryParams, headers=post_headers)
     if resp.status_code == 200:
         body = resp.content.decode('utf-8')
         if body is not None:
@@ -23,7 +25,9 @@ def doPostQuery(queryParams):
 
 
 def fetchOneArticleInfo(pubAPI: str):
-    resp = requests.get(pubAPI)
+    s = requests.session()
+    s.keep_alive = False
+    resp = s.get(pubAPI)
     if resp.status_code == 200:
         body = resp.content.decode()
         if body is not None:
@@ -69,7 +73,7 @@ basicQueryParams = {
 
 def query(sinceToday: bool, outputFilePath: str,  fieldSeparator: str = '\t', lineSeparator: str = '\n'):
     offset = 0
-    limit = 100
+    limit = 500
     todayStr = date.today().strftime("%Y-%m-%d")
     queryParams = basicQueryParams.copy()
     queryParams["limit"] = limit
@@ -125,6 +129,6 @@ def queryAllUpToNow(outputFilePath: str = '../outputcsv', fieldSeparator: str = 
     except Exception as e:
         print(f"chemrxiv failed {e}")
 
-#
-# if __name__ == '__main__':
-#     queryAllUpToNow()
+
+if __name__ == '__main__':
+    queryAllUpToNow()
