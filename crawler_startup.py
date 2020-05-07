@@ -80,6 +80,8 @@ if __name__ == '__main__':
     lineSeparator = inputArgs.lineSeparator
     todayOutputFilePath = f'{outputFilePath}/{todayStr}'
     todaySourceFilePath = f'{sourceFilePath}/{todayStr}'
+    os.makedirs(todayOutputFilePath)
+    os.makedirs(todaySourceFilePath)
     if "upToNow" == optType:
         print("crawling all data up to now")
         crawlerWithoutType(sourceSite, outputFilePath, sourceFilePath, fieldSeparator, lineSeparator)
@@ -107,8 +109,6 @@ if __name__ == '__main__':
                 print(f"pubmed failed : {e}")
     elif 'lastDay' == optType:
         print("crawling last day's data")
-        os.makedirs(todayOutputFilePath)
-        os.makedirs(todaySourceFilePath)
         crawlerWithoutType(sourceSite, todayOutputFilePath, todaySourceFilePath, fieldSeparator, lineSeparator)
         yesterdayStr = getYesterday()
         if sourceSite is None or sourceSite == "chemrxiv":
