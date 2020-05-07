@@ -80,8 +80,10 @@ if __name__ == '__main__':
     lineSeparator = inputArgs.lineSeparator
     todayOutputFilePath = f'{outputFilePath}/{todayStr}'
     todaySourceFilePath = f'{sourceFilePath}/{todayStr}'
-    os.makedirs(todayOutputFilePath)
-    os.makedirs(todaySourceFilePath)
+    if os.path.exists(todaySourceFilePath) is False:
+        os.makedirs(todaySourceFilePath)
+    if os.path.exists(todayOutputFilePath) is False:
+        os.makedirs(todayOutputFilePath)
     if "upToNow" == optType:
         print("crawling all data up to now")
         crawlerWithoutType(sourceSite, todayOutputFilePath, todaySourceFilePath, fieldSeparator, lineSeparator)
