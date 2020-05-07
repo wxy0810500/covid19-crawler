@@ -1,6 +1,13 @@
 import requests
 from datetime import date
 import json
+import random
+import time
+
+
+# 随机等待时间
+def sleep(sec):
+    time.sleep(sec * (1 + random.random()))
 
 personal_token = "13149d1fe2dc5f561e09e2066424008230fdac3e98b6f3d" \
                  "21d535c309ad15eeb9525786abeae3f4e637020cc010587f2fa6657321424dba90715f6c8ab3d2b6e"
@@ -70,24 +77,26 @@ basicQueryParams = {
     "order_direction": "desc"
 }
 
+todayStr = date.today().strftime("%Y-%m-%d")
 
-def query(sinceToday: bool, outputFilePath: str,  fieldSeparator: str = '\t', lineSeparator: str = '\n'):
+
+def query(sinceToday: bool, outputFilePath: str,  fieldSeparator: str, lineSeparator: str):
     offset = 0
     limit = 500
-    todayStr = date.today().strftime("%Y-%m-%d")
     queryParams = basicQueryParams.copy()
     queryParams["limit"] = limit
     if sinceToday:
         queryParams["published_since"] = todayStr
-        outputFileName = outputFilePath + f'/chemrxiv-{todayStr}-today.csv'
+        outputFileName = outputFilePath + '/chemrxiv-today.csv'
     else:
-        outputFileName = outputFilePath + f'/chemrxiv-{todayStr}-upToNow.csv'
+        outputFileName = outputFilePath + '/chemrxiv.csv'
     outputFile = open(outputFileName, "wb")
     outputFile.write((fieldSeparator.join(csvHeaders) + lineSeparator).encode())
     stop = False
     while stop is not True:
         try:
             queryParams["offset"] = offset
+            sleep(2)
             articleList = doPostQuery(queryParams)
             if articleList is not None and len(articleList) > 0:
                 for article in articleList:
@@ -110,21 +119,20 @@ def query(sinceToday: bool, outputFilePath: str,  fieldSeparator: str = '\t', li
                 outputFile.close()
                 raise Exception
     outputFile.close()
+    return outputFileName
 
 
-def querySinceToday(outputFilePath: str = '../outputcsv', fieldSeparator: str = '\t', lineSeparator: str = '\n'):
+def querySinceToday(outputFilePath: str = f'../outputcsv/{todayStr}', fieldSeparator: str = '\t',
+                    lineSeparator: str = '\n'):
+    return query(True, outputFilePath, fieldSeparator, lineSeparator)
+
+
+
+def queryAllUpToNow(outputFilePath: str = f'../outputcsv/{todayStr}', fieldSeparator: str = '\t',
+                    lineSeparator: str = '\n'):
     try:
         print("chemrxiv start ---------:")
-        query(True, outputFilePath, fieldSeparator, lineSeparator)
-        print("chemrxiv end ---------:")
-    except Exception as e:
-        print(f"chemrxiv failed {e}")
-
-
-def queryAllUpToNow(outputFilePath: str = '../outputcsv', fieldSeparator: str = '\t', lineSeparator: str = '\n'):
-    try:
-        print("chemrxiv start ---------:")
-        query(False, outputFilePath, fieldSeparator, lineSeparator)
+        return query(False, outputFilePath, fieldSeparator, lineSeparator)
         print("chemrxiv end ---------:")
     except Exception as e:
         print(f"chemrxiv failed {e}")

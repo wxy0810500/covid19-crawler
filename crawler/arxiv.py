@@ -33,11 +33,10 @@ def getOne(start: int, numberPerQuery: int, fieldSeparator: str = '\t', lineSepa
 csvHeaders = ["data_add", "title", "abstract", "Publication date", "doi", "source_link"]
 
 
-def process(outputFilePath: str = "../outputcsv", fieldSeparator: str = '\t', lineSeparator: str = '\n'):
-    outputFilePath = outputFilePath + "/arxiv-{}-upToNow.csv"
+def process(outputFilePath: str = f'../outputcsv/{todayStr}', fieldSeparator: str = '\t', lineSeparator: str = '\n'):
     try:
         print("arxiv start ---------:")
-        with open(outputFilePath.format(todayStr), 'wb') as outFile:
+        with open(f'{outputFilePath}/arxiv.csv', 'wb') as outFile:
             # header
             outFile.write((fieldSeparator.join(csvHeaders) + lineSeparator).encode('utf-8'))
             num = 100

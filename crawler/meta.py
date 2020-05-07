@@ -105,21 +105,21 @@ class SearchByKeyWords:
                 "?articleTypes=preprint,journalArticle&order=asc&sortBy=paper_pub_date&page={}&pageSize={}"
 
     @classmethod
-    def fetchAllByKeys(cls, outputFilePath: str = '../outputcsv',
+    def fetchAllByKeys(cls, outputFilePath: str = f'../outputcsv/{todayStr}',
                        pageSize: int = 100, fieldSeparator: str = '\t', lineSeparator: str = '\n'):
         # authorization = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlEwVkVRa1JHUXpneVJUZEVSa0UzTjBVNVJrTTFNREF3TTBaRE5FSkVSREpHT1RWQ05UbEZOZyJ9.eyJodHRwczovL21ldGEub3JnL2dyb3VwcyI6W10sImlzcyI6Imh0dHBzOi8vbG9naW4ubWV0YS5vcmcvIiwic3ViIjoiYXV0aDB8NWU5OTYzNDMxYjMwZWMwYzg1YmExMmYyIiwiYXVkIjpbImh0dHBzOi8vYXBpLm1ldGEub3JnIiwiaHR0cHM6Ly9jemktbWV0YS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTg3NjEwMDk5LCJleHAiOjE1ODc2OTY0OTksImF6cCI6IlhNZEJrN3k4b2EzV1dKVjRIQWV5ZFZrcGNnSGlLb29jIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbInBsYWNlaG9sZGVyOm1lbWJlciIsInJlYWQ6dGhlbWF0aWNfZmVlZHMiXX0.ibGxfM-0fO4S0TDuPJq_NjS4AiJPb6_kRX8TLQe557SFvMa8Kwhcf43wKXqKCWSz3yIYllvDuJzBYhLyFau6NA3jmwsxjIq5O57AJqo2Ug10CMSk21gkwQks3UsIuQp7EYfj6--O4aaQbCEI4Yv6Octd4x7oWidhiqQR7eyEKq07Jpp_rWWsRWwD9SRpIxsL4ge7r1qLCMHPh8j9QIl0_x9qHQAGCzh9ROynWv8icv9-QwwicLJHKB078ue61zIesKTeKCiyqfqoMRl0J12CkTXM8dvMLzKJpP_4E8ux3CBqW8RhxWg_LkdelNEvL133s95XJ4OCxgDCgjfV3t6AnA"
         authorization = login()
         with Pool(4) as pool:
             pool.starmap(cls._searchByOneKeyWord,
                          ((authorization, cls.__keyFormat.format(key),
-                           outputFilePath + "/meta-{}-{}-upToYesterday.csv".format(todayStr, index),
+                           outputFilePath + f"/meta-{index}.csv",
                            pageSize, fieldSeparator, lineSeparator)
                           for index, key in enumerate(cls.__keys)))
-        outFile = f'{outputFilePath}/meta-{todayStr}-upToYesterday.csv'
+        outFile = f'{outputFilePath}/meta.csv'
         with open(outFile, 'wb') as f:
             f.write((fieldSeparator.join(csvHeaders) + lineSeparator).encode())
 
-        os.system(f'cat {outputFilePath}/meta-{todayStr}-*-upToYesterday.csv > {outFile}')
+        os.system(f'cat {outputFilePath}/meta-*.csv > {outFile}')
         # for key in keys:
         #     searchByKeyWord(authorization, cls.__keyFormat.format(key),
         #                            outputFilePath + f"../outputcsv/meta-{todayStr}-{repr(key)}--upToYesterday.csv",
@@ -265,14 +265,23 @@ class FetchByFeed:
                           format(totalCount, pageSize, page))
 
     @classmethod
-    def fetchYesterday(cls, outputFilePath: str = '../outputcsv', fieldSeparator: str = '\t', lineSeparator: str = '\n'):
-        outputFile = outputFilePath + f"/meta-{todayStr}-onlyYesterday.csv"
+    def fetchYesterday(cls, outputFilePath: str = f'../outputcsv/{todayStr}',
+                       fieldSeparator: str = '\t', lineSeparator: str = '\n'):
+        outputFile = f"{outputFilePath}/meta-onlyYesterday.csv"
         # auth = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlEwVkVRa1JHUXpneVJUZEVSa0UzTjBVNVJrTTFNREF3TTBaRE5FSkVSREpHT1RWQ05UbEZOZyJ9.eyJodHRwczovL21ldGEub3JnL2dyb3VwcyI6W10sImlzcyI6Imh0dHBzOi8vbG9naW4ubWV0YS5vcmcvIiwic3ViIjoiYXV0aDB8NWU5OTYzNDMxYjMwZWMwYzg1YmExMmYyIiwiYXVkIjpbImh0dHBzOi8vYXBpLm1ldGEub3JnIiwiaHR0cHM6Ly9jemktbWV0YS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTg3ODk3NTUwLCJleHAiOjE1ODc5ODM5NTAsImF6cCI6IlhNZEJrN3k4b2EzV1dKVjRIQWV5ZFZrcGNnSGlLb29jIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbInBsYWNlaG9sZGVyOm1lbWJlciIsInJlYWQ6dGhlbWF0aWNfZmVlZHMiXX0.hsU1w0RhD0h1QB7n8FJlKS-_tpHTjsl4w4ppEFq4tPPJPuvlD8WlfGk4TKZRwlT--V7Llc8YlbOoKOAdxRwAQYB8wWvlsSPehbQN5xYNVtW97WeMtg6leGahhkXxTgb1p15qA3AOPAWBEN8Yw38UaSyheVYZ4IDc6v7hLy4qTL0DrROntxeXwEtTTPo5_DuyAn7myA2m27B_rSfDIrF9_sCWTQMdgdjfL4qcP7FZxcwOXcywrvSr6qSRacB8ONnSgFtDEOsnuXpZY3tKEaXY4_sYwtEWo2EK0pTnumipjfCVdcPraoMnXk3_OJdAhGrK8uAaPTmrxmzALu0GZ2hnTQ"
         feedId = "e0bb0d63-ba7a-4b16-a92e-d0e406f9e437"
         auth = login()
         FetchByFeed._fetchPages(outputFile, auth, feedId, FetchByFeed.GroupBy.DAILY, "1", 50,
                                 fieldSeparator, lineSeparator)
+        return outputFile
 
+
+def processLastDay(outputFilePath: str, fieldSeparator: str, lineSeparator: str) -> str:
+    return FetchByFeed.fetchYesterday(outputFilePath, fieldSeparator, lineSeparator)
+
+
+def processAll(outputFilePath: str, fieldSeparator: str, lineSeparator: str):
+    SearchByKeyWords.fetchAllByKeys(outputFilePath, 100, fieldSeparator, lineSeparator)
 
 # if __name__ == '__main__':
 #     argParser = argparse.ArgumentParser(description="get article base info from meta.")

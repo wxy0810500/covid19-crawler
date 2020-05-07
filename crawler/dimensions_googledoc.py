@@ -10,7 +10,7 @@ todayStr = date.today().strftime("%Y-%m-%d")
 
 def downLoadCsv(sourceFilePath: str):
     r = requests.get(DOWNLOAD_URL)
-    sourceFile = sourceFilePath + f"/raw-dimensions-{todayStr}.csv"
+    sourceFile = sourceFilePath + f"/raw-dimensions.csv"
     with open(sourceFile, "wb") as f:
         for chunk in r.iter_content(chunk_size=1024):
             if chunk:
@@ -31,10 +31,10 @@ def switchCsv(sourceFile, outputFile, fieldSeparator: str = '\t', lineSeparator:
             of.write(newLine.encode())
 
 
-def process(outputFileDir='../outputcsv', sourceFileDir='../sourceFiles',
+def process(outputFileDir: str = f'../outputcsv/{todayStr}', sourceFileDir: str = f'../sourceFiles/{todayStr}',
             fieldSeparator: str = '\t', lineSeparator: str = '\n'):
     # source = "../sourceFiles/raw-dimensions-2020-04-30.csv"
-    switchCsv(downLoadCsv(sourceFileDir), f'{outputFileDir}/dimension_ai-{todayStr}-upToNow.csv',
+    switchCsv(downLoadCsv(sourceFileDir), f'{outputFileDir}/dimension_ai.csv',
               fieldSeparator, lineSeparator)
     # switchCsv(source, f'{outputFileDir}/dimension_ai-{todayStr}-upToNow.csv',
     #           fieldSeparator, lineSeparator)

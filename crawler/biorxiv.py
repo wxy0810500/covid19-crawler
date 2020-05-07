@@ -33,7 +33,7 @@ csvHeaders = ["data_add", "title", "abstract", "Publication date", "doi", "sourc
 
 def switchToCsv(downloadFile, outputFilePath,
                 fieldSeparator: str = '\t', lineSeparator: str = '\n'):
-    with open(outputFilePath + f"/biorxiv-{todayStr}-upToNow.csv", 'wb') as outFile:
+    with open(f'{outputFilePath}/biorxiv.csv', 'wb') as outFile:
         # header
         outFile.write((fieldSeparator.join(csvHeaders) + lineSeparator).encode('utf-8'))
         with open(downloadFile, "r") as sf:
@@ -44,7 +44,7 @@ def switchToCsv(downloadFile, outputFilePath,
                 outFile.write((fieldSeparator.join(record) + lineSeparator).encode('utf-8'))
 
 
-def process(outputFilePath: str = "../outputcsv", downloadFilePath: str = "../souceFiles",
+def process(outputFilePath: str = f'../outputcsv/{todayStr}', downloadFilePath: str = f'../sourceFiles/{todayStr}',
             fieldSeparator: str = '\t', lineSeparator: str = '\n'):
     try:
         print("biorxiv start ---------:")

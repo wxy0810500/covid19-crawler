@@ -55,7 +55,7 @@ def getCsvRecords(docList: List, fieldSeparator: str = '\t', lineSeparator: str 
         ) + lineSeparator).encode()
 
 
-def process(outputFilePath: str = '../outputcsv', fieldSeparator: str = '\t', lineSeparator: str = '\n'):
+def process(outputFilePath: str = f'../outputcsv/{todayStr}', fieldSeparator: str = '\t', lineSeparator: str = '\n'):
 
     # first time
     listRet = getResultList()
@@ -64,7 +64,7 @@ def process(outputFilePath: str = '../outputcsv', fieldSeparator: str = '\t', li
     print(f"totalCount : {totalCount}")
     if totalCount == 0:
         return
-    outFile = f'{outputFilePath}/dimensionAI-{todayStr}-upToNow.csv'
+    outFile = f'{outputFilePath}/dimensionAI-upToNow.csv'
     outF = open(outFile, 'wb')
     docs: List = listRet['docs']
     outF.writelines(getCsvRecords(docs, fieldSeparator, lineSeparator))

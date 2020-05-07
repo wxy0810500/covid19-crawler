@@ -39,21 +39,29 @@ def process(outFile: str, queryStr: str, fieldSeparator: str = '\t', lineSeparat
         f.writelines(records)
 
 
-def fetchLastSeveralDays(outFilePath: str = '../outputcsv', days: int = 1,
+def fetchLastSeveralDays(outFilePath: str = f'../outputcsv/{todayStr}', days: int = 1,
                          fieldSeparator: str = '\t', lineSeparator: str = '\n'):
     queryStr = f'(((COVID-19) OR SARS-CoV-2) OR novel coronavirus) OR 2019-nCoV AND ("last {days} days"[PDat] )'
-    outFile = outFilePath + f'/pubmed-{todayStr}-last_{days}_days.csv'
+    outFile = outFilePath + f'/pubmed-last_{days}_days.csv'
     print(f"fetch last {days} days")
     process(outFile, queryStr, fieldSeparator, lineSeparator)
+    return outFile
 
 
-def fetchLastSeveralYears(outFilePath: str = '../outputcsv', years: int = 1,
+def processLastDay(outputFilePath: str, fieldSeparator: str, lineSeparator: str) -> str:
+    return fetchLastSeveralDays(outputFilePath, 2, fieldSeparator, lineSeparator)
+
+
+def fetchLastSeveralYears(outFilePath: str = f'../outputcsv/{todayStr}', years: int = 1,
                           fieldSeparator: str = '\t', lineSeparator: str = '\n'):
     queryStr = f'(((COVID-19) OR SARS-CoV-2) OR novel coronavirus) OR 2019-nCoV AND ("last {years} years"[PDat] )'
-    outFile = outFilePath + f'/pubmed-{todayStr}-last_{years}_years.csv'
+    outFile = outFilePath + f'/pubmed.csv'
     print(f"fetch last {years} years")
     process(outFile, queryStr, fieldSeparator, lineSeparator)
 
+
+def processAll(outputFilePath: str, fieldSeparator: str, lineSeparator: str) -> str:
+    fetchLastSeveralYears(outputFilePath, 1, fieldSeparator, lineSeparator)
 
 # if __name__ == '__main__':
 #     # fetchLastSeveralYears(1)
