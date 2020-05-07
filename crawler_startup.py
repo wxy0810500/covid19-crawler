@@ -84,7 +84,7 @@ if __name__ == '__main__':
     os.makedirs(todaySourceFilePath)
     if "upToNow" == optType:
         print("crawling all data up to now")
-        crawlerWithoutType(sourceSite, outputFilePath, sourceFilePath, fieldSeparator, lineSeparator)
+        crawlerWithoutType(sourceSite, todayOutputFilePath, todaySourceFilePath, fieldSeparator, lineSeparator)
         if sourceSite is None or sourceSite == "chemrxiv":
             # chemrxiv
             try:
