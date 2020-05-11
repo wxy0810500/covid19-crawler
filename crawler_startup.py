@@ -46,7 +46,7 @@ def processLastDay(webSite: str, todayFunc: Callable, allFunc: Callable,
         if os.path.exists(previousFile):
             print(f"{webSite} today start ---------:")
             outFile = todayFunc(todayOutputFilePath, fieldSeparator, lineSeparator)
-            os.system(f'cat {outFile},{previousFile} > {todayTargetFile}')
+            os.system(f'cat {outFile} {previousFile} > {todayTargetFile}')
             print(f"{webSite} today end ---------:")
         else:
             print(f"{webSite} all start ---------:")
