@@ -1,7 +1,7 @@
 import json
 from datetime import date
 from multiprocessing import Pool, cpu_count, current_process
-
+from requests_toolbelt import SSLAdapter
 import pandas as pd
 import requests
 from requests.adapters import HTTPAdapter
@@ -20,12 +20,12 @@ requests.adapters.DEFAULT_RETRIES = 5
 
 def downLoadCsv(sourceFilePath: str):
     proxy = {
+        # "https": "124.93.201.59:59618"
         "https": getProxyURL()
-        # "https": "112.95.23.136:8888"
     }
+
     s = requests.Session()
-    adapter = HTTPAdapter(max_retries=5)
-    s.mount('https://', adapter)
+    s.mount('https://', SSLAdapter('TLSv1'))
     s.proxies = proxy
     s.keep_alive = False
     s.headers = {"User-Agent": USER_AGENT}

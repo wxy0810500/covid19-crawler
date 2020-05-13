@@ -94,25 +94,42 @@ PROXY_IP_POOL = None
 
 def getProxy(expectProtocol='https'):
     global PROXY_IP_POOL
+    i = 1
     if PROXY_IP_POOL is None or len(PROXY_IP_POOL) == 0:
         PROXY_IP_POOL = getProxys(1)
-
+    s = requests.Session()
     # 如果平均时间超过200ms重新选取ip
     while True:
         # 从100个IP中随机选取一个IP作为代理进行访问
-        proxy = random.choice(PROXY_IP_POOL)
-        # 检查ip
-        ip = proxy[0]
-        protocol = proxy[2]
-        if expectProtocol != protocol:
-            continue
-        average_time = checkIp(ip)
-        if average_time > 200:
-            # 去掉不能使用的IP
-            PROXY_IP_POOL.remove(proxy)
-            print("ip连接超时, 重新获取中!")
-        if average_time < 200:
+        try:
+            if len(PROXY_IP_POOL) == 0:
+                PROXY_IP_POOL = getProxys(i)
+                i += 1
+            proxy = random.choice(PROXY_IP_POOL)
+            if expectProtocol != proxy[2]:
+                continue
+            # 检查ip
+            url = f'{proxy[2]}://{proxy[0]}:{proxy[1]}'
+            s.proxies = {
+                proxy[2]: url
+            }
+            s.get("https://www.baidu.com")
             break
+        except Exception as e:
+            PROXY_IP_POOL.remove(proxy)
+            print(e)
+            continue
+        # ip = proxy[0]
+        # protocol = proxy[2]
+        # if expectProtocol != protocol:
+        #     continue
+        # average_time = checkIp(ip)
+        # if average_time > 200:
+        #     # 去掉不能使用的IP
+        #     PROXY_IP_POOL.remove(proxy)
+        #     print("ip连接超时, 重新获取中!")
+        # if average_time < 200:
+        #     break
 
     # 去掉已经使用的IP
     PROXY_IP_POOL.remove(proxy)
