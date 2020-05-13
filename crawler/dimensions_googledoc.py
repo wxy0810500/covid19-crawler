@@ -1,19 +1,35 @@
-import requests
-from datetime import date
-import os
-import pandas as pd
 import json
-import time
-from multiprocessing import Pool, Queue, cpu_count, current_process
+from datetime import date
+from multiprocessing import Pool, cpu_count, current_process
+
+import pandas as pd
+import requests
+from requests.adapters import HTTPAdapter
+
+
+from utils.proxy_ip_pool import getProxyURL, USER_AGENT
+from utils.timeUtils import randomSleep
 
 DOWNLOAD_URL = "https://docs.google.com/spreadsheets/d/1-kTZJZ1GAhJ2m4GAIhw1ZdlgO46JpvX0ZQa232VWRmw/export" \
                "?format=csv&id=1-kTZJZ1GAhJ2m4GAIhw1ZdlgO46JpvX0ZQa232VWRmw&gid=1470772867"
 
 todayStr = date.today().strftime("%Y-%m-%d")
 
+requests.adapters.DEFAULT_RETRIES = 5
+
 
 def downLoadCsv(sourceFilePath: str):
-    r = requests.get(DOWNLOAD_URL)
+    proxy = {
+        "https": getProxyURL()
+        # "https": "112.95.23.136:8888"
+    }
+    s = requests.Session()
+    adapter = HTTPAdapter(max_retries=5)
+    s.mount('https://', adapter)
+    s.proxies = proxy
+    s.keep_alive = False
+    s.headers = {"User-Agent": USER_AGENT}
+    r = s.get(DOWNLOAD_URL, timeout=500)
     sourceFile = f"{sourceFilePath}/raw-dimensions.csv"
     with open(sourceFile, "wb") as f:
         for chunk in r.iter_content(chunk_size=1024):
@@ -22,8 +38,8 @@ def downLoadCsv(sourceFilePath: str):
     return sourceFile
 
 
-def getAbstract(pubId: str):
-    resp = requests.get(f'https://app.dimensions.ai/details/sources/publication/{pubId}/abstract.json')
+def getAbstract(pubId: str, proxy: dict):
+    resp = requests.get(f'https://app.dimensions.ai/details/sources/publication/{pubId}/abstract.json', proxies=proxy)
     if resp.status_code == 200:
         body = resp.content.decode()
         if body is not None:
@@ -43,9 +59,20 @@ csvHeaders = ["data_add", "title", "abstract", "Publication_date", "doi", "sourc
 def doExtractDataTask(sourceDF: pd.DataFrame) -> pd.DataFrame:
     print(current_process().pid)
     pidS: pd.Series = sourceDF['Publication ID']
-    pIdAndAbsDictList = [
-        {'Publication ID': pubId, 'abstract': getAbstract(pubId)} for index, pubId in pidS.iteritems()
-    ]
+    pIdAndAbsDictList = []
+    proxy = {
+        "https": getProxyURL()
+    }
+    for index, pubId in pidS.iteritems():
+        if index % 20 == 0:
+            proxy = {
+                "https": getProxyURL()
+            }
+        if index % 3 == 0:
+            randomSleep(1)
+        if index % 10 == 0:
+            randomSleep(3)
+        pIdAndAbsDictList.append({'Publication ID': pubId, 'abstract': getAbstract(pubId, proxy)})
 
     absDF = pd.DataFrame(pIdAndAbsDictList, columns=['Publication ID', 'abstract'])
     retDF = sourceDF.merge(absDF, how='left', on='Publication ID')
@@ -69,7 +96,7 @@ def extractData(sourceDF: pd.DataFrame):
 
         retDF = results[0]
         for subRetDF in results[1:]:
-            retDF = pd.concat(retDF, subRetDF)
+            retDF = pd.concat([retDF, subRetDF], ignore_index=True)
 
     return retDF
 
@@ -88,16 +115,11 @@ def processLatestParts(sourceFile, preSourceFile, outFile, fieldSeparator: str =
 
 def process_today(preSourceFile, outputFileDir: str = '../outputcsv', sourceFileDir: str = '../sourceFiles',
                   fieldSeparator: str = '\t', lineSeparator: str = '\n'):
-    # sourceFile = downLoadCsv(sourceFileDir)
-    sourceFile = '../sourceFIles/raw-dimensions.csv'
-    outFile = f'{outputFileDir}/dimension_ai-{todayStr}.csv'
-    processLatestParts(sourceFile, preSourceFile, outFile,
-                       fieldSeparator, lineSeparator)
-
-
-def test(num):
-    print(num)
-    return num
+    sourceFile = downLoadCsv(sourceFileDir)
+    # sourceFile = '../sourceFiles/raw-dimensions.csv'
+    # outFile = f'{outputFileDir}/dimension_ai-{todayStr}.csv'
+    # processLatestParts(sourceFile, preSourceFile, outFile,
+    #                    fieldSeparator, lineSeparator)
 
 
 if __name__ == '__main__':
